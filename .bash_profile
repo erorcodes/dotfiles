@@ -120,7 +120,7 @@ alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable 
 alias show_options='shopt'                  # Show_options: display bash options settings
 
 alias vbp='vim ~/.bash_profile'
-
+alias dot='cd ~/codes/dotfiles'
 
 #   Git specific aliases
 #   ------------------------------------------------------------
