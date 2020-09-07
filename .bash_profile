@@ -93,8 +93,8 @@
 #   2. ALIASES
 #   -----------------------------
 
-cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
 alias ll='ls -la'
+cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
