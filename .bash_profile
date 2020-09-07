@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #  ---------------------------------------------------------------------------
 #
 #  Description:  This file holds all my BASH configurations and aliases
@@ -29,10 +31,16 @@
         git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/ '
     }
 
-    export PS1="[\[\033[36m\]\u@\h \[\033[31m\]\w\[\033[00m\]\[\033[32m\]\$(parse_git_branch)\[\033[00m\] \D{%F %T}]\n$ "
+    if [ "$SHELL" == "/bin/bash" ]
+    then
+        export PS1="[\[\033[36m\]\u@\h \[\033[31m\]\w\[\033[00m\]\[\033[32m\]\$(parse_git_branch)\[\033[00m\] \D{%F %T}]\n$ "
+    elif [ "$SHELL" == "/bin/zsh" ]
+    then
+        export PS1="%D %T %~ %n $ "
+    fi 
 
 
-#    export PS1="%D %T %~  %n $(parse_git_branch) $ "
+
 #    export PS1='[\u@\h \W] \D{%F %T}\n\$ '
 
 #   Pretty Colors
