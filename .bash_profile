@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #  ---------------------------------------------------------------------------
-#
 #  Description:  This file holds all my BASH configurations and aliases
+#  ---------------------------------------------------------------------------
 #
 #  Sections:
 #  1.  Environment Configuration
@@ -17,8 +17,6 @@
 #
 #  ---------------------------------------------------------------------------
 
-
-
 #   -------------------------------
 #   1. ENVIRONMENT CONFIGURATION
 #   -------------------------------
@@ -31,27 +29,18 @@
         git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/ '
     }
 
-    if [ "$SHELL" == "/bin/bash" ]
-    then
-        export PS1="[\[\033[36m\]\u@\h \[\033[31m\]\w\[\033[00m\]\[\033[32m\]\$(parse_git_branch)\[\033[00m\] \D{%F %T}]\n$ "
-    elif [ "$SHELL" == "/bin/zsh" ]
-    then
-        export PS1="%D %T %~ %n $ "
-    fi 
-
-#    export PS1='[\u@\h \W] \D{%F %T}\n\$ '
-
+    [ "$SHELL" == "/bin/bash" ] && export PS1="[\[\033[36m\]\u@\h \[\033[31m\]\w\[\033[00m\]\[\033[32m\]\$(parse_git_branch)\[\033[00m\] \D{%F %T}]\n$ "
+    [ "$SHELL" == "/bin/zsh" ] && export PS1="%D %T %~ %n $ "
 
 #   Turn off bell sound
 #   ------------------------------------------------------------
 
     bind 'set bell-style none'
 
-
 #   Pretty Colors
 #   ------------------------------------------------------------
     export CLICOLOR=1
-    LSCOLORS=exfxbxdxcxegedabagacad
+    export LSCOLORS=exfxbxdxcxegedabagacad
 
     # 1. directory
     # 2. symbolic link – special kind of file that contains a reference to another file or directory.
@@ -77,13 +66,8 @@
 
 #   Bash Completion
 #   ------------------------------------------------------------ 
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-      . $(brew --prefix)/etc/bash_completion
-    fi
-    
-    if [ -f ~/.config/exercism/exercism_completion.bash ]; then
-      . ~/.config/exercism/exercism_completion.bash
-    fi
+    [ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion
+    [ -f ~/.config/exercism/exercism_completion.bash ] && . ~/.config/exercism/exercism_completion.bash
 
 #   Set Paths
 #   ------------------------------------------------------------
@@ -97,13 +81,6 @@
 #   Set default blocksize for ls, df, du
 #   ------------------------------------------------------------
     export BLOCKSIZE=1k
-
-#   Add color to terminal
-#   ------------------------------------------------------------
-    export CLICOLOR=1
-    export LSCOLORS=ExFxBxDxCxegedabagacad
-
-
 
 #   -----------------------------
 #   2. ALIASES
@@ -127,7 +104,6 @@ alias dot='cd ~/codes/dotfiles'
 alias g='git'
 alias gc='git commit'
 alias st='git status'
+alias diff='git diff'
 alias ga='git add'
 alias gp='git add --patch'
-
-
