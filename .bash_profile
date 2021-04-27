@@ -86,24 +86,47 @@
 #   2. ALIASES
 #   -----------------------------
 
+alias ls='ls -l'
 alias ll='ls -la'
-cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
+
 alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 alias c='clear'                             # c:            Clear terminal display
 alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
 alias show_options='shopt'                  # Show_options: display bash options settings
 
-alias vbp='vim ~/.bash_profile'
-alias dot='cd ~/codes/dotfiles'
+alias vbp='vim ~/.bash_profile'             # Edit the local .bash_profile
+alias dot='cd ~/codes/dotfiles'             # Go into my dotfiles folder
+
+#   Secure some "dangerous" commands
+#   ------------------------------------------------------------
+
+alias rm="rm -i"
+alias mv="mv -i"
+alias cp="cp -i"
 
 #   Git specific aliases
 #   ------------------------------------------------------------
 alias g='git'
 alias gc='git commit'
+alias co='git checkout'
 alias st='git status'
 alias diff='git diff'
 alias ga='git add'
 alias gp='git add --patch'
+
+#   Functions
+#   ------------------------------------------------------------
+
+cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
+mcd() { mkdir -p $1; cd $1;}                # Go into directory after creation
+gadd() { git add $@; git status;}         # Show git status after adding something
+
+#   -----------------------------
+#   9. REMINDERS & NOTES
+#   -----------------------------
+
+# Add the next line to .bash_profile at customer computer and adapt to dotfiles location
+# [ -f $HOME/code/dotfiles/.bash_profile ] && . $HOME/code/dotfiles/.bash_profile
